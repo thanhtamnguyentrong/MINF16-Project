@@ -32,7 +32,7 @@ mongodb.MongoClient.connect(process.env.MONGO_URL, function (err, database) {
 });
 
 // Routes
-app.use('/restaurant', require('./routes/restaurant'));
+//app.use('/restaurant', require('./routes/restaurant'));
 
 
 app.get('/',function(req,res){
