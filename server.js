@@ -18,17 +18,19 @@ mongodb.MongoClient.connect("mongodb://"+process.env.MONGO_USERNAME +":" + proce
   if (err) {
     console.log(err);
     process.exit(1);
+  } else{
+    db = database;
+    console.log("Database connection ready");
+
+    // Initialize the app.
+    var server = app.listen(process.env.PORT || 8080, function () {
+      var port = server.address().port;
+      console.log("App now running on port", port);
+    });
   }
 
   // Save database object from the callback for reuse.
-  db = database;
-  console.log("Database connection ready");
-
-  // Initialize the app.
-  var server = app.listen(process.env.PORT || 8080, function () {
-    var port = server.address().port;
-    console.log("App now running on port", port);
-  });
+  
 });
 
 // Routes
