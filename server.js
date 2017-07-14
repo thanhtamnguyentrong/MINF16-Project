@@ -7,16 +7,17 @@ var ObjectID = mongodb.ObjectID;
 
 //Express
 var app =express();
-app.use(bodyParser.urlencoded({ extended: true}));
-app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: true}));
+// app.use(bodyParser.json());
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db;
 
 // Connect to the database before starting the application server.
 mongodb.MongoClient.connect("mongodb://"+process.env.MONGO_USERNAME +":" + process.env.MONGO_PASSWORD+ "@" +process.env.MONGO_URL, function (err, database) {
+  console.log("Databse URL is : mongodb://"+process.env.MONGO_USERNAME +":" + process.env.MONGO_PASSWORD+ "@" +process.env.MONGO_URL);
   if (err) {
-    console.log(err);
+    console.error(err);
     process.exit(1);
   } else{
     db = database;
