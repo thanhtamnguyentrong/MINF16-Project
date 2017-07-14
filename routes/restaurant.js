@@ -9,7 +9,7 @@ var _ = require("underscore");
 var async = require('async');
 var db = require('../db')
 
-function addRestaurant(body){
+function addRestaurant(body,callback){
 	console.log(body);
 	var collection = db.get().collection('Restaurant');
 	collection.insertOne(body).then(function(result){
@@ -20,7 +20,7 @@ function addRestaurant(body){
 			}
 	    	else {
 	    		console.log(docs);
-	    		res.json(docs);
+	    		callback(docs);
 	    	}
 		})
 	})
@@ -47,7 +47,9 @@ router.post('/', cache('seconds', 0), function(req, res) {
     // var productId = req.params.id;
     // var episodeId = req.body.episode_id;
     // getStreams(clientId, productId, episodeId, res);
-    addRestaurant(body);
+    addRestaurant(body,function(docs){
+    	res.json(docs);
+    });
 
 });
 //Return router
