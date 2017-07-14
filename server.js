@@ -5,8 +5,6 @@ var bodyParser = require('body-parser');
 var mongodb = require("mongodb");
 var ObjectID = mongodb.ObjectID;
 
-var auth = require('./auth');
-
 //Express
 var app =express();
 app.use(bodyParser.urlencoded({ extended: true}));
