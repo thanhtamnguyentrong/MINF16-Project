@@ -19,7 +19,7 @@ router.get('/', function(req,res){
 		}
     	else {
     		console.log(docs);
-    		res.status().json(docs)
+    		res.status(200).json(docs);
     	}
   	})
 });
