@@ -14,7 +14,13 @@ router.get('/', function(req,res){
 	var collection = db.get().collection('Restaurant');
 
 	collection.find().toArray(function(err, docs) {
-    	res.json('restaurants', {comments: docs})
+		if(err){
+			console.log(err)
+		}
+    	else {
+    		console.log(docs);
+    		res.json('restaurants', {comments: docs})
+    	}
   	})
 });
 
