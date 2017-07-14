@@ -7,8 +7,8 @@ var ObjectID = mongodb.ObjectID;
 
 //Express
 var app =express();
-// app.use(bodyParser.urlencoded({ extended: true}));
-// app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json());
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
 var db = require('./db');
