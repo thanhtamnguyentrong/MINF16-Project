@@ -25,8 +25,9 @@ mongodb.MongoClient.connect("mongodb://"+process.env.MONGO_USERNAME +":" + proce
 
     // Initialize the app.
     var server = app.listen(process.env.PORT || 8080, function () {
-      var port = server.address().port;
-      console.log("App now running on port", port);
+        var port = server.address().port;
+        console.log("App now running on port", port);
+      
     });
   }
 
@@ -49,5 +50,5 @@ app.get('/',function(req,res){
 //   sockets: 50 // optional pool size for each http and https
 // });
 
-app.listen(process.env.PORT || 3000);
+//app.listen(process.env.PORT || 3000);
 console.log('API is running on port ' + ( process.env.PORT || 3000));
