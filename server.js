@@ -11,18 +11,17 @@ var app =express();
 // app.use(bodyParser.json());
 
 // Create a database variable outside of the database connection callback to reuse the connection pool in your app.
-var db;
+var db = require('./db');
 
 // Connect to the database before starting the application server.
-mongodb.MongoClient.connect("mongodb://"+process.env.MONGO_USERNAME +":" + process.env.MONGO_PASSWORD+ "@" +process.env.MONGO_URL, function (err, database) {
+db.connect("mongodb://"+process.env.MONGO_USERNAME +":" + process.env.MONGO_PASSWORD+ "@" +process.env.MONGO_URL, function (err) {
   console.log("Databse URL is : mongodb://"+process.env.MONGO_USERNAME +":" + process.env.MONGO_PASSWORD+ "@" +process.env.MONGO_URL);
   if (err) {
     console.error(err);
+    console.log('Unable to connect to Mongo.');
     process.exit(1);
   } else{
-    db = database;
     console.log("Database connection ready");
-
     // Initialize the app.
     var server = app.listen(process.env.PORT || 8080, function () {
         var port = server.address().port;
@@ -36,11 +35,11 @@ mongodb.MongoClient.connect("mongodb://"+process.env.MONGO_USERNAME +":" + proce
 });
 
 // Routes
-//app.use('/restaurant', require('./routes/restaurant'));
+app.use('/restaurant', require('./routes/restaurant'));
 
 
 app.get('/',function(req,res){
-	res.send('MINF16 Project APIs <br>Version: 1.0 - UAT');
+	res.send('MINF16 Project APIs <br>Version: 1.0 <br> Author : <ul> <li>Thanh Tam</li> <li> Didier Joomun </li> <li> Trang </li></ul>');
 });
 
 
