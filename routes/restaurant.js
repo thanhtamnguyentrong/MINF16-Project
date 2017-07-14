@@ -14,7 +14,7 @@ router.get('/', function(req,res){
 	var collection = db.get().collection('Restaurant');
 
 	collection.find().toArray(function(err, docs) {
-    	res.render('restaurants', {comments: docs})
+    	res.json('restaurants', {comments: docs})
   	})
 });
 
