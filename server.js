@@ -39,7 +39,7 @@ app.use('/restaurant', require('./routes/restaurant'));
 
 
 app.get('/',function(req,res){
-	res.send('MINF16 Project APIs <br>Version: 1.0 <br> Author : <ul> <li>Thanh Tam</li> <li> Didier Joomun </li> <li> Trang </li></ul>');
+	res.send('MINF16 Project APIs <br>Version: 1.0 <br> Author : <ul> <li>Thanh Tam</li> <li> Didier Joomun </li> <li> Trang Ngo</li></ul>');
 });
 
 
