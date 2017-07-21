@@ -36,6 +36,7 @@ db.connect("mongodb://"+process.env.MONGO_USERNAME +":" + process.env.MONGO_PASS
 
 // Routes
 app.use('/restaurant', require('./routes/restaurant'));
+app.use('/endusers', require('./routes/endusers'));
 
 
 app.get('/',function(req,res){
