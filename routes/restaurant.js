@@ -12,11 +12,13 @@ var db = require('../db')
 function addRestaurant(body,callback){
 	console.log(body);
 	var collection = db.get().collection('Restaurant');
+	var restaurantIndex = countRestaurant() + 1 ;
+	body._id = restaurantIndex;
 	collection.insertOne(body).then(function(result){
-		console.log(result);
 		collection.find().toArray(function(err,docs){
 			if(err){
-			console.log(err)
+				console.log(err);
+				res.status(401).json(err);
 			}
 	    	else {
 	    		console.log(docs);
@@ -26,7 +28,17 @@ function addRestaurant(body,callback){
 	})
 }
 
+function countRestaurant(){
+	var collection = db.get().collection('Restaurant');
+	collection.find().count(function(e,count){
+		if(err)
+			return -1;
+		else
+			return count;
+	});
+}
 //Routes
+//get all restaurant info
 router.get('/', function(req,res){
 	var collection = db.get().collection('Restaurant');
 
@@ -35,12 +47,13 @@ router.get('/', function(req,res){
 			console.log(err)
 		}
     	else {
-    		console.log(docs);
+    		//console.log(docs);
     		res.status(200).json(docs);
     	}
   	})
 });
 
+// add new restaurant
 router.post('/', cache('seconds', 0), function(req, res) {
 	var body = req.body;
     // var clientId = req.headers['movideo-auth'];
@@ -51,6 +64,11 @@ router.post('/', cache('seconds', 0), function(req, res) {
     	res.json(docs);
     });
 
+});
+
+router.get('/count', function(req,res){
+	res.json(countRestaurant());
+	
 });
 //Return router
 module.exports = router;
